@@ -1,21 +1,18 @@
 $(document).ready(function () {
-    $("#recipes").on('change', function () {
-        getValueSelect();
-    })
+    getApi();
+    getValueSelect();
 })
-//get value from input
-function getValueSelect() {
-    var recipes = $("#recipes").val();
-    conditionSelection(recipes);
-    console.log(recipes);
-}
-//get api
+//get API
 function getApi() {
     $.ajax({
         dataType: 'json',
         url: getUrl(),
-        success: (data) => getRecipe(data),
-        error: () => getError(),
+        success: (data) => {
+            getRecipes(data);
+        },
+        error: () => {
+            console.log("error something");
+        }
     })
 }
 // get url
@@ -23,50 +20,36 @@ function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
-// get error
-function getError() {
-    console.log("Have something error");
-}
-// Condition of selection
-function conditionSelection(recipes) {
-    if (recipes == 1) {
-        getApi();
-    } else {
-        console.log("Hello number 2");
-    }
-}
-//get recipes loop 
-function getRecipe(mydata) {
-    mydata.recipes.forEach(element => {
-        profile(element);
-        getIngredient(element.ingredients);
+//get recipes
+function getRecipes(myData) {
+    myData.recipes.forEach(element => {
+        seleteValue(element);
     });
 }
-// get profile
-function profile(icon){
-    if(icon.id == 0){
-        
-    }
+//get value to seleted
+function seleteValue(value) {
+    var getValue = "";
+    getValue += `
+    <option value="${value.id}">${value.name}</option>
+    `
+    printOut(getValue);
 }
-// get ingradient
-function getIngredient(ing) {
-    ing.forEach(item => {
-        computeHTML(item);
-    });
-}
-function computeHTML(display) {
-    var compute = "";
-    compute += `
-    <tr>
-    <td><img src="${display.iconUrl}" width="100"></td>
-    <td>${display.quantity}</td>
-    <td>${display.unit[0]}</td>
-    <td>${display.name}</td>
-    </tr>
-    `;
-    printOut(compute);
-}
-
+// output select
 function printOut(out) {
-    $('#ingredient').append(out);
+    $('#recipes').append(out);
+}
+//get value from select
+function getValueSelect(){
+    $('#recipes').on('change', function(){
+        var recipes = $('#recipes').val();
+        recipe(recipes);
+    })
+}
+// condition of selete
+function recipe(data){
+    switch(data){
+        case '1':
+        console.log("id = 1");
+        break; 
+    }
 }
