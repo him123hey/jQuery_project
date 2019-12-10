@@ -15,11 +15,11 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <button class="btn btn-primary" type="button">-</button>
+                        <button class="btn btn-primary" type="button" id="minuse">-</button>
                     </div>
                     <input type="text" class="form-control text-center" id="person">
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="submit">+</button>
+                        <button class="btn btn-success" type="submit" id="sum">+</button>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,15 @@
             <div class="col-4" id="profile">
 
             </div>
-            <div class="col-4" id="ing"></div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <table class="table table-bordered text-center" id="ing">
+                    
+                </table>
+            </div>
+            <div class="col-6" id="instruction"></div>
         </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>

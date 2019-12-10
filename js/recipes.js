@@ -50,6 +50,8 @@ function recipe(id) {
         if (item.id == id) {
             icon(item.iconUrl, item.name);
             getIngradient(item.ingredients);
+            getGuest(item.nbGuests);
+            getInstructions(item);
         }
     })
 }
@@ -68,10 +70,26 @@ function getIngradient(ing) {
     var ingred = "";
     ing.forEach(item => {
         ingred += `
-        <img src="${item.iconUrl}" class="img-fluid">
-        <p>${item.name}</p>
+        <tr>
+            <td><img src="${item.iconUrl}" class="img-fluid" style="width:80px;"></td>
+            <td>${item.name}</td>
+            <td>${item.quantity}</td>
+            <td>${item.unit}</td>
+        </tr>
     `;
     });
     $("#ing").html(ingred);
+}
+//get guest
+function getGuest(guest) {
+    var guest = $("#person").val(guest);
+}
+// get instructions
+function getInstructions(instruc){
+    var instruction = "";
+    instruction +=`
+        <p>${instruc.instructions}</p>
+    `
+    $('#instruction').html(instruction);
 }
 
