@@ -1,14 +1,18 @@
 $(document).ready(function () {
     getApi();
-    getValueSelect();
+    $('#recipes').on('change', function () {
+        var id = $('#recipes').val();
+        recipe(id);
+    })
 })
 //get API
+var allData = [];
 function getApi() {
     $.ajax({
         dataType: 'json',
         url: getUrl(),
         success: (data) => {
-            getRecipes(data);
+            getRecipes(data.recipes);
         },
         error: () => {
             console.log("error something");
@@ -22,7 +26,9 @@ function getUrl() {
 }
 //get recipes
 function getRecipes(myData) {
-    myData.recipes.forEach(element => {
+    allData = myData;
+    console.log(allData);
+    myData.forEach(element => {
         seleteValue(element);
     });
 }
@@ -38,18 +44,34 @@ function seleteValue(value) {
 function printOut(out) {
     $('#recipes').append(out);
 }
-//get value from select
-function getValueSelect(){
-    $('#recipes').on('change', function(){
-        var recipes = $('#recipes').val();
-        recipe(recipes);
+// condition of selete
+function recipe(id) {
+    allData.forEach(item => {
+        if (item.id == id) {
+            icon(item.iconUrl, item.name);
+            getIngradient(item.ingredients);
+        }
     })
 }
-// condition of selete
-function recipe(data){
-    switch(data){
-        case '1':
-        console.log("id = 1");
-        break; 
-    }
+// icon
+function icon(img, name) {
+    var result = "";
+    console.log(img)
+    result += `
+    <img src="${img}" class="img-fluid">
+    <h2>${name}</h2>
+    `;
+    $("#profile").html(result);
 }
+// get Ingradient
+function getIngradient(ing) {
+    var ingred = "";
+    ing.forEach(item => {
+        ingred += `
+        <img src="${item.iconUrl}" class="img-fluid">
+        <p>${item.name}</p>
+    `;
+    });
+    $("#ing").html(ingred);
+}
+
