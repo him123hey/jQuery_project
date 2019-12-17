@@ -4,6 +4,18 @@ $(document).ready(function () {
         var id = $('#recipes').val();
         recipe(id);
     })
+    $("#sum").on('click', function () {
+        var person = $('#person').val();
+        if (person < 15) {
+            sumGuest(person);
+        }
+    })
+    $('#minuse').on('click', function () {
+        var person = $('#person').val();
+        if (person > 1) {
+            minuseGuest(person);
+        }
+    })
 })
 //get API
 var allData = [];
@@ -51,17 +63,32 @@ function recipe(id) {
             icon(item.iconUrl, item.name);
             getIngradient(item.ingredients);
             getGuest(item.nbGuests);
-            getInstructions(item);
+            getInstructions(item.instructions);
         }
     })
+}
+// get Guest
+function getGuest(p) {
+    $('#person').val(p);
+}
+function sumGuest(newperson) {
+    var newGuest = parseInt(newperson);
+    newGuest += 1;
+    $('#person').val(newGuest);
+
+}
+function minuseGuest(newperson) {
+    var newGuest = parseInt(newperson);
+    newGuest -= 1;
+    $('#person').val(newGuest);
 }
 // icon
 function icon(img, name) {
     var result = "";
     console.log(img)
     result += `
-    <img src="${img}" class="img-fluid">
-    <h2>${name}</h2>
+    <h2 class="text-center text-light">${name}</h2>
+    <img src="${img}" class="img-fluid" style="width:1300px; height:350px;">
     `;
     $("#profile").html(result);
 }
@@ -69,27 +96,28 @@ function icon(img, name) {
 function getIngradient(ing) {
     var ingred = "";
     ing.forEach(item => {
+        quan = item.quantity;
+        console.log(quan);
         ingred += `
         <tr>
             <td><img src="${item.iconUrl}" class="img-fluid" style="width:80px;"></td>
             <td>${item.name}</td>
             <td>${item.quantity}</td>
-            <td>${item.unit}</td>
+            <td>${item.unit[0]}</td>
         </tr>
     `;
     });
     $("#ing").html(ingred);
 }
-//get guest
-function getGuest(guest) {
-    var guest = $("#person").val(guest);
-}
 // get instructions
-function getInstructions(instruc){
+function getInstructions(step) {
     var instruction = "";
-    instruction +=`
-        <p>${instruc.instructions}</p>
-    `
-    $('#instruction').html(instruction);
+    var steps = step.split("<step>");
+    for (let i = 1; i < steps.length; i++) {
+        instruction += `
+           <h5 class="text-primary"> Step ${i} </h5>
+            <p class="text-light">${steps[i]}</p>
+            `;
+        }
+    $("#instruction").html(instruction);
 }
-

@@ -7,45 +7,61 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recipes Project</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </head>
 
-<body>
+<body style="background-image:
+            linear-gradient(to right, rgba(112, 87, 87, 0.52), rgba(2, 2, 2, 0.73)),
+            url(img/bg.jpg);
+            background-size: cover;
+">
     <div class="container mt-4">
         <div class="row">
             <div class="col-6">
+                <p class="text-light"><strong>Guest:</strong></p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-primary" type="button" id="minuse">-</button>
                     </div>
-                    <input type="text" class="form-control text-center" id="person">
+                    <input type="text" class="form-control text-center" disabled id="person">
                     <div class="input-group-append">
                         <button class="btn btn-success" type="submit" id="sum">+</button>
                     </div>
                 </div>
             </div>
             <div class="col-6">
-                <form action="#">
-                    <select name="recipes" id="recipes" class="form-control">
-                        <option value="" selected disabled>Choose recipes</option>
-                    </select>
-                </form>
+                <div class="form-group">
+                    <label for="recipes" class="text-light"><strong>Choose Recipes:</strong></label>
+                    <form action="#">
+                        <select name="recipes" id="recipes" class="form-control" style="margin-top:6px;">
+                            <option value="" selected disabled>Choose recipes</option>
+                        </select>
+                    </form>
+                </div>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4" id="profile">
-
+            <div class="col-12" id="profile">
+                <h1 class="text-center text-primary">WELCOME TO COOKING WEBSITE !!!</h1>
             </div>
-            <div class="col-4"></div>
         </div>
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-6">
-                <table class="table table-bordered text-center" id="ing">
-                    
+                <table class="table table-bordered text-center text-light" id="ing">
+
                 </table>
             </div>
-            <div class="col-6" id="instruction"></div>
+            <div class="col-1"></div>
+            <div class="col-5" id="instruction"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 text-center text-light">
+                <h5>Happy on holiday cooking for your family with nice food!!!</h5>
+                <p>&COPY;HimHey</p>
+            </div>
+            <div class="col-4"></div>
         </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>
