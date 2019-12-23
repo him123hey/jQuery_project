@@ -7,7 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recipes Project</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body style="background-image:
@@ -15,10 +18,12 @@
             url(img/bg.jpg);
             background-size: cover;
 ">
+    <h1 class="text-center text-warning mt-5">WELCOME TO RECIPES WEBSITE!!!</h1>
+    <h5 class="text-center text-light">Enjoy with cooking for your family on your holiday.</h5>
     <div class="container mt-4">
         <div class="row">
             <div class="col-6">
-                <p class="text-light"><strong>Guest:</strong></p>
+                <p class="text-light"><strong>Number of Guest:</strong></p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-primary" type="button" id="minuse">-</button>
@@ -42,26 +47,50 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-12" id="profile">
-                <h1 class="text-center text-primary">WELCOME TO COOKING WEBSITE !!!</h1>
-            </div>
-        </div>
-        <div class="row mt-4">
+            <div class="col-3" id="profile"></div>
             <div class="col-6">
-                <table class="table table-bordered text-center text-light" id="ing">
+                <table class="table table-bordered text-center text-light">
+                    <thead id="thead">
+                        <tr>
+                            <th>Icon</th>
+                            <th>Quantity</th>
+                            <th>Unit of quantity</th>
+                            <th>Name of ingredient</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ing">
 
+                        </tbodyid="ing">
                 </table>
             </div>
-            <div class="col-1"></div>
-            <div class="col-5" id="instruction"></div>
+            <div class="col-3" id="instruction"></div>
         </div>
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4 text-center text-light">
-                <h5>Happy on holiday cooking for your family with nice food!!!</h5>
-                <p>&COPY;HimHey</p>
+    </div>
+    </div>
+    <div class="jumbotron bg-light" style="margin-bottom: 0;">
+        <div class="container">
+            <div class="row" id="footer">
             </div>
-            <div class="col-4"></div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4 text-center">
+                    <p class="text-center">&copy;All Rights Reser​​ved ​​​​​​​​​​​​​​​​HimHEY</p>
+                    <a href="https://www.youtube.com/results?search_query=recipes">
+                        <img src="img/youtub.png" style="width: 10%;">
+                    </a>
+                    <a href="https://www.facebook.com/groups/483985138285832/">
+                        <img src="img/facebook.png" style="width: 10%;">
+                    </a>
+                    <a href="#">
+                        <img src="img/twitter01.png" style="width: 9%;">
+                    </a>
+                    <a href="#">
+                        <img src="img/instagram.png" style="width: 9%;">
+                    </a>
+                    <p><strong>Find more resources on other social media</strong> </p>
+                </div>
+                <div class="col-4"></div>
+            </div>
         </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>

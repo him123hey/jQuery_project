@@ -1,22 +1,24 @@
 $(document).ready(function () {
     getApi();
+    $("#thead").hide();
+    // Check action on select option
     $('#recipes').on('change', function () {
         var id = $('#recipes').val();
         recipe(id);
+        $("#thead").show();
     })
-    $("#sum").on('click', function () {
-        var person = $('#person').val();
-        if (person < 15) {
-            sumGuest(person);
-        }
+
+    // code for sum of guest
+    $("#sum").on("click", function () {
+        selectnewGuest($("#person").val());
     })
-    $('#minuse').on('click', function () {
-        var person = $('#person').val();
-        if (person > 1) {
-            minuseGuest(person);
-        }
+
+    // code for minus guest
+    $("#minuse").on("click", function () {
+        selectnewMinusGuest($("#person").val());
     })
 })
+
 //get API
 var allData = [];
 function getApi() {
@@ -25,26 +27,29 @@ function getApi() {
         url: getUrl(),
         success: (data) => {
             getRecipes(data.recipes);
+            footer(data.recipes);
         },
         error: () => {
             console.log("error something");
         }
     })
 }
+
 // get url
 function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
+
 //get recipes
 function getRecipes(myData) {
     allData = myData;
-    console.log(allData);
     myData.forEach(element => {
         seleteValue(element);
     });
 }
-//get value to seleted
+
+//get value put into select option
 function seleteValue(value) {
     var getValue = "";
     getValue += `
@@ -52,55 +57,46 @@ function seleteValue(value) {
     `
     printOut(getValue);
 }
-// output select
+
+//function for output select
 function printOut(out) {
     $('#recipes').append(out);
 }
-// condition of selete
+
+//fucntion check condition of selete from input
+var quantity = [];
+var firstGuest = 0;
 function recipe(id) {
     allData.forEach(item => {
         if (item.id == id) {
             icon(item.iconUrl, item.name);
             getIngradient(item.ingredients);
-            getGuest(item.nbGuests);
             getInstructions(item.instructions);
+            quantity = item.ingredients;
+            firstGuest = item.nbGuests;
+            selectnewGuest(item.nbGuests);
         }
     })
 }
-// get Guest
-function getGuest(p) {
-    $('#person').val(p);
-}
-function sumGuest(newperson) {
-    var newGuest = parseInt(newperson);
-    newGuest += 1;
-    $('#person').val(newGuest);
 
-}
-function minuseGuest(newperson) {
-    var newGuest = parseInt(newperson);
-    newGuest -= 1;
-    $('#person').val(newGuest);
-}
-// icon
+// function use to icon of food
 function icon(img, name) {
     var result = "";
-    console.log(img)
     result += `
+    <img src="${img}" class="img-fluid img-thumbnail">
     <h2 class="text-center text-light">${name}</h2>
-    <img src="${img}" class="img-fluid" style="width:1300px; height:350px;">
     `;
     $("#profile").html(result);
 }
-// get Ingradient
+
+//function loop to get Ingradient
 function getIngradient(ing) {
     var ingred = "";
     ing.forEach(item => {
         quan = item.quantity;
-        console.log(quan);
         ingred += `
         <tr>
-            <td><img src="${item.iconUrl}" class="img-fluid" style="width:80px;"></td>
+            <td><img src="${item.iconUrl}" class="img-fluid rounded-circle" style="width:40px; height:40px;"></td>
             <td>${item.name}</td>
             <td>${item.quantity}</td>
             <td>${item.unit[0]}</td>
@@ -109,15 +105,76 @@ function getIngradient(ing) {
     });
     $("#ing").html(ingred);
 }
-// get instructions
+
+//function get instructions
 function getInstructions(step) {
     var instruction = "";
     var steps = step.split("<step>");
     for (let i = 1; i < steps.length; i++) {
         instruction += `
-           <h5 class="text-primary"> Step ${i} </h5>
+           <h5 class="text-warning"> Instruction: ${i} </h5>
             <p class="text-light">${steps[i]}</p>
             `;
-        }
+    }
     $("#instruction").html(instruction);
+}
+
+// function get new guest after sum
+function selectnewGuest(guest) {
+    var getNewGuest = parseInt(guest) + 1;
+    if (getNewGuest <= 15) {
+        $("#person").val(getNewGuest);
+        calculateData($("#person").val());
+    }
+}
+
+// function get new guest after mines
+function selectnewMinusGuest(minusGuest) {
+    var guestMinus = parseInt(minusGuest) - 1;
+    if (guestMinus >= 1) {
+        $("#person").val(guestMinus);
+        calculateData($("#person").val());
+
+    }
+}
+
+// function calculate new quantity
+function calculateData(quan) {
+    var newQuantity;
+    var oldQuantity;
+    var result = "";
+    quantity.forEach(el => {
+        oldQuantity = el.quantity / firstGuest;
+        newQuantity = oldQuantity * quan;
+        result += `
+        <tr>
+       
+        <td><img src="${el.iconUrl}" style="width:40px; height:40px;" class="img-fluid rounded-circle"></td>
+        <td id='quantity'>${newQuantity}</td>
+        <td>${el.unit[0]}</td>
+        <td>${el.name}</td>
+        </tr>
+        `;
+        $("#ing").html(result);
+    });
+}
+// get recipes for footer
+function footer(getDatafooter) {
+    var result = "";
+    getDatafooter.forEach(el => {
+        result += `
+        <div class="col-3" >
+            <div class="card">
+                <div class="card-body">
+                    <img src="${el.iconUrl}" class="img-fluid" style="width:200px; height:150px">
+                </div>
+                <div class="card-footer">
+                    <h5>${el.name}</h5>
+                </div>
+            
+            </div>
+        </div>
+    `;
+        $("#footer").html(result);
+    });
 }
