@@ -1,0 +1,30 @@
+body{
+    background-image:
+            linear-gradient(to right, rgba(14, 13, 13, 0.52), rgba(2, 2, 2, 0.73)),
+            url(../img/bg.jpg);
+            background-size: cover;
+}
+h1{
+    font-family: 'Courgette', cursive;
+}
+marquee{
+    margin-top: 30px;
+    padding:8px; 
+    background:orange;
+}
+#recipes{
+    margin-top:6px; 
+    height:45px;
+}
+#person{
+    padding:22px;
+}
+.jumbotron{
+    margin-bottom: 0;
+}
+#facebook,#youtube{
+    width: 10%;
+}
+#twitter,#instagram{
+    width: 9%;
+}

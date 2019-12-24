@@ -163,10 +163,10 @@ function footer(getDatafooter) {
     var result = "";
     getDatafooter.forEach(el => {
         result += `
-        <div class="col-3" >
+        <div class="col-lg-3 col-md-6 col-sm-12" >
             <div class="card">
                 <div class="card-body">
-                    <img src="${el.iconUrl}" class="img-fluid" style="width:200px; height:150px">
+                    <img src="${el.iconUrl}" class="img-fluid"style="width:380px; height:200px">
                 </div>
                 <div class="card-footer">
                     <h5>${el.name}</h5>

@@ -11,34 +11,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="background-image:
-            linear-gradient(to right, rgba(112, 87, 87, 0.52), rgba(2, 2, 2, 0.73)),
-            url(img/bg.jpg);
-            background-size: cover;
-">
+<body>
     <h1 class="text-center text-warning mt-5">WELCOME TO RECIPES WEBSITE!!!</h1>
-    <h5 class="text-center text-light">Enjoy with cooking for your family on your holiday.</h5>
+    <marquee scrollamount="10" loop="infinite"><h5 class="text-light">Enjoy cooking on holiday or at the weekend with your family!!!</h5></marquee>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <p class="text-light"><strong>Number of Guest:</strong></p>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <button class="btn btn-primary" type="button" id="minuse">-</button>
+                        <button class="btn btn-outline-warning" type="button" id="minuse"><i class="material-icons">remove</i></button>
                     </div>
                     <input type="text" class="form-control text-center" disabled id="person">
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="submit" id="sum">+</button>
+                        <button class="btn btn-outline-primary" type="submit" id="sum"><i class="material-icons">add</i></button>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="recipes" class="text-light"><strong>Choose Recipes:</strong></label>
                     <form action="#">
-                        <select name="recipes" id="recipes" class="form-control" style="margin-top:6px;">
+                        <select name="recipes" id="recipes" class="form-control">
                             <option value="" selected disabled>Choose recipes</option>
                         </select>
                     </form>
@@ -47,10 +45,10 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-3" id="profile"></div>
-            <div class="col-6">
-                <table class="table table-bordered text-center text-light">
-                    <thead id="thead">
+            <div class="col-md-3 col-sm-12 shadow-lg" id="profile"></div>
+            <div class="col-md-6 col-sm-12">
+                <table class="table table-bordered text-center text-light shadow-lg">
+                    <thead id="thead" class="thead thead-dark">
                         <tr>
                             <th>Icon</th>
                             <th>Quantity</th>
@@ -60,14 +58,14 @@
                     </thead>
                     <tbody id="ing">
 
-                        </tbodyid="ing">
+                    </tbody>
                 </table>
             </div>
-            <div class="col-3" id="instruction"></div>
+            <div class="col-md-3 col-sm-12 text-center" id="instruction"></div>
         </div>
     </div>
     </div>
-    <div class="jumbotron bg-light" style="margin-bottom: 0;">
+    <div class="jumbotron bg-light">
         <div class="container">
             <div class="row" id="footer">
             </div>
@@ -76,16 +74,16 @@
                 <div class="col-4 text-center">
                     <p class="text-center">&copy;All Rights Reser​​ved ​​​​​​​​​​​​​​​​HimHEY</p>
                     <a href="https://www.youtube.com/results?search_query=recipes">
-                        <img src="img/youtub.png" style="width: 10%;">
+                        <img src="img/youtub.png" id="youtube">
                     </a>
                     <a href="https://www.facebook.com/groups/483985138285832/">
-                        <img src="img/facebook.png" style="width: 10%;">
+                        <img src="img/facebook.png" id="facebook">
                     </a>
                     <a href="#">
-                        <img src="img/twitter01.png" style="width: 9%;">
+                        <img src="img/twitter01.png" id="twitter">
                     </a>
                     <a href="#">
-                        <img src="img/instagram.png" style="width: 9%;">
+                        <img src="img/instagram.png" id="instagram">
                     </a>
                     <p><strong>Find more resources on other social media</strong> </p>
                 </div>
